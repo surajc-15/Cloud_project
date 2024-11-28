@@ -1,3 +1,3 @@
 # Cloud_project
 
-a language learning platform built with fun activitgies and learning goal
+a language learning platform built with fun activities and learning goal
