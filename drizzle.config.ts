@@ -1,12 +1,20 @@
-import "dotenv/config";  // This should be at the top to load .env variables
-import type { Config } from "drizzle-kit";
+import { defineConfig } from "drizzle-kit";
 
-export default {
-    schema: "./db/schema.ts",
-    out: "./drizzle",
-    driver: "pg",  // Make sure you're using the correct driver for PostgreSQL
-    dialect: "postgresql",
-    dbCredentials: {
-        connectionString: process.env.DATABASE_URL!,  // Reference the DATABASE_URL directly
-    },
-} satisfies Config;
+export default defineConfig({
+  out: "./drizzle",
+  dialect: "postgresql",
+  dbCredentials: {
+    url: "postgresql://neondb_owner:p8mwVuUixqR6@ep-lingering-thunder-a1b8qei4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require",
+  },
+  schema: "./db/schema.ts",
+  schemaFilter: "public",
+  tablesFilter: "*",
+  introspect: {
+    casing: "camel",
+  },
+  migrations: {
+    table: "__drizzle_migrations__",
+    schema: "public",
+  },
+  verbose: true,
+});
